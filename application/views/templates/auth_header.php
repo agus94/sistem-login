@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>
-        <?php $title; ?>
+        <?= $title; ?>
     </title>
 
     <!-- Custom fonts for this template-->

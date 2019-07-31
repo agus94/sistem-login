@@ -18,12 +18,17 @@ class Auth extends CI_Controller {
 
 	public function registration()
 	{
-		$data = array(
-			'title' => 'WPU Sistem Login',
-		);
-		$this->load->view('templates/auth_header', $data);
-		$this->load->view('auth/registration');
-		$this->load->view('templates/auth_footer');
+		$this->form_validation->set_rules('name', 'Name', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		
+		if( $this->form_validation->run() == false ) {
+			$data['title'] = 'WPU User Registration';
+			$this->load->view('templates/auth_header', $data);
+			$this->load->view('auth/registration');
+			$this->load->view('templates/auth_footer');
+		} else {
+			echo 'data berhasil ditambahkan';
+		}
 	}
 
 }
