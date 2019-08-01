@@ -12,13 +12,16 @@
               <form class="user" action="POST" action="<?= base_url('auth/registration'); ?>">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Full name">
+                  <?= form_error('name', '<small class="text-danger pl-3">','</small>'); ?>
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email Address">
+                  <?= form_error('email', '<small class="text-danger pl-3">','</small>'); ?>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="password" class="form-control form-control-user" id="password1" name="password1" placeholder="Password">
+                    <?= form_error('password1', '<small class="text-danger pl-3">','</small>'); ?>
                   </div>
                   <div class="col-sm-6">
                     <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Repeat Password">
