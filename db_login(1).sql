@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Aug 02, 2019 at 04:25 PM
--- Server version: 10.1.40-MariaDB-0ubuntu0.18.04.1
--- PHP Version: 7.2.19-0ubuntu0.18.04.1
+-- Host: localhost
+-- Generation Time: Aug 02, 2019 at 08:50 PM
+-- Server version: 5.7.27-0ubuntu0.16.04.1
+-- PHP Version: 7.0.33-8+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,10 +42,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `name`, `email`, `image`, `password`, `id_role`, `is_active`, `date_created`) VALUES
-(1, 'Nur Achmad Agus Ismail', 'agusismail94@gmail.com', 'default.jpg', '$2y$10$VVPJexv2.DRYy.OI1ZNoiereMplIHeK.xQ4Ym.W766V0fENPUsARO', 2, 0, 1564728402),
-(3, 'fiqih', 'fiqih@kokola.co.id', 'default.jpg', '$2y$10$Tlh9seplYp9jDVzzIdB.zun3CkfvO6OUDcQgS2c5ih4cXHtqAeUrC', 2, 1, 1564729075),
-(4, 'yuli', 'yuli@yahoo.co.id', 'default.jpg', '$2y$10$eApyMc0SnSYeFE7AacPmKe1ETg1.Knt1IoOgAivzj0PhgBZQMreQC', 2, 1, 1564729186),
-(5, 'sandi', 'sandi@kokola.co.id', 'default.jpg', '$2y$10$VCd6V5zYTf95T4N5gCBoP.xNg90Lib2ZrGu/6dstK9Zv5xhfXad/O', 2, 1, 1564729312);
+(6, 'Nur Achmad Agus Ismail', 'agusismail94@gmail.com', 'default.jpg', '$2y$10$iDgtFQjdOkl0B8YEn7aQ/.YxEHuo0nawReDpPOU8EM5J/Ih607hqm', 2, 1, 1564753016);
 
 -- --------------------------------------------------------
 
@@ -90,7 +87,7 @@ ALTER TABLE `tb_user-role`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_user-role`
 --
