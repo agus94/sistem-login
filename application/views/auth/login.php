@@ -17,17 +17,18 @@
                      
                                     <?= $this->session->flashdata('message'); ?>
 
-                                    <form class="user">
+                                    <form method="POST" actio="<?= base_url('auth') ;?>" class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="email" name="email"
+                                                id="email" name="email" value="<?= set_value('email') ?>"
                                                 placeholder="Enter Email Address...">
                                         </div>
+                                        <?= form_error('email', '<small class="text-danger pl-3">','</small>'); ?>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                 id="password" name="password" placeholder="Password">
                                         </div>
-                                        
+                                        <?= form_error('password', '<small class="text-danger pl-3">','</small>'); ?>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
