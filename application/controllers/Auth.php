@@ -39,7 +39,9 @@ class Auth extends CI_Controller {
 			// jika usernya aktif
 			if($user['is_active'] == 1){
 				// cek password
-				if(password_verify())
+				if(password_verify()){
+					
+				}
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
 				This Email has not been actived!</div>');
