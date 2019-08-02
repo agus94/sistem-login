@@ -39,8 +39,17 @@ class Auth extends CI_Controller {
 			// jika usernya aktif
 			if($user['is_active'] == 1){
 				// cek password
-				if(password_verify()){
-					
+				if(password_verify($password, $user['password'])){
+					$data = [
+						'email' => $user['email'],
+						'id_role' => $user['id_role']
+					];
+					$this->session->set_userdata($data);
+					redirect('user');
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+					Wrong password!</div>');
+					redirect('auth');
 				}
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
@@ -78,7 +87,7 @@ class Auth extends CI_Controller {
 						'name' => htmlspecialchars($this->input->post('name', true)),
 						'email' => htmlspecialchars($this->input->post('email', true)),
 						'image' => 'default.jpg',
-						'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+						'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 						'id_role' => 2,
 						'is_active' => 1,
 						'date_created' => time()
