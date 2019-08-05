@@ -45,7 +45,11 @@ class Auth extends CI_Controller {
 						'id_role' => $user['id_role']
 					];
 					$this->session->set_userdata($data);
-					redirect('user');
+					if($user['id_role'] == 1) {
+						redirect('admin');
+					} else {
+						redirect('user');
+					}
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
 					Wrong password!</div>');
@@ -98,6 +102,15 @@ class Auth extends CI_Controller {
 					Congratulation! your account has been created. Please Login</div>');
 					redirect('auth');
         }
+	}
+
+	public function logout()
+	{
+		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('id_role');
+
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
+		redirect('auth');
 	}
 
 }
