@@ -32,7 +32,7 @@ class Auth extends CI_Controller {
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 
-		$user = $this->db->get_where('tb_user', ['email' => $email])->row_array();
+		$user = $this->db->get_where('user', ['email' => $email])->row_array();
 		
 		// jika usernya ada
 		if($user) {
@@ -42,10 +42,14 @@ class Auth extends CI_Controller {
 				if(password_verify($password, $user['password'])){
 					$data = [
 						'email' => $user['email'],
-						'id_role' => $user['id_role']
+						'role_id' => $user['role_id']
 					];
 					$this->session->set_userdata($data);
-					redirect('user');
+					if($user['role_id'] == 1) {
+						redirect('admin');
+					} else {
+						redirect('user');
+					}
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
 					Wrong password!</div>');
@@ -88,7 +92,7 @@ class Auth extends CI_Controller {
 						'email' => htmlspecialchars($this->input->post('email', true)),
 						'image' => 'default.jpg',
 						'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-						'id_role' => 2,
+						'role_id' => 2,
 						'is_active' => 1,
 						'date_created' => time()
 					];
@@ -100,13 +104,13 @@ class Auth extends CI_Controller {
         }
 	}
 
-
 	public function logout()
 	{
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
 
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logout!</div>');
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
+
 		redirect('auth');
 	}
 
