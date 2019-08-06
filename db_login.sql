@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.6.6deb5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 30, 2019 at 09:43 PM
--- Server version: 5.7.27-0ubuntu0.16.04.1
--- PHP Version: 7.0.33-8+ubuntu16.04.1+deb.sury.org+1
+-- Host: localhost:3306
+-- Generation Time: Aug 06, 2019 at 03:17 PM
+-- Server version: 10.1.40-MariaDB-0ubuntu0.18.04.1
+-- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,69 +23,174 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_user`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `tb_user` (
-  `id_user` int(11) NOT NULL,
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
   `image` varchar(128) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `id_role` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `is_active` int(1) NOT NULL,
   `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
+(6, 'Nur Achmad Agus Ismail', 'agusismail94@gmail.com', 'default.jpg', '$2y$10$B11sW8owJws0BWS8DXJaWOnD7le/8kfNxYycbWFIi5aozkjyEnRhu', 2, 1, 1564969868),
+(7, 'Fiqih', 'fiqih@kokola.co.id', 'default.jpg', '$2y$10$oLat4tuUcdgQre46lfPyM.doQfAjw2h0I0MxxHbXgKkXVQEJpn.n.', 1, 1, 1564978437);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_user-role`
+-- Table structure for table `user_access_menu`
 --
 
-CREATE TABLE `tb_user-role` (
-  `id_role` int(11) NOT NULL,
+CREATE TABLE `user_access_menu` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_access_menu`
+--
+
+INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_menu`
+--
+
+CREATE TABLE `user_menu` (
+  `id` int(11) NOT NULL,
+  `menu` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_menu`
+--
+
+INSERT INTO `user_menu` (`id`, `menu`) VALUES
+(1, 'Admin'),
+(2, 'User');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role`
+--
+
+CREATE TABLE `user_role` (
+  `id` int(11) NOT NULL,
   `role` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_user-role`
+-- Dumping data for table `user_role`
 --
 
-INSERT INTO `tb_user-role` (`id_role`, `role`) VALUES
+INSERT INTO `user_role` (`id`, `role`) VALUES
 (1, 'Administrator'),
 (2, 'Member');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_sub_menu`
+--
+
+CREATE TABLE `user_sub_menu` (
+  `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `url` varchar(128) NOT NULL,
+  `icon` varchar(128) NOT NULL,
+  `is_active` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_sub_menu`
+--
+
+INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
+(1, 1, 'Dashboard', 'admin', 'fas fa-fw fa-tachometer-alt', 1),
+(3, 2, 'My Profile', 'user', 'fas fa-fw fa-user', 1),
+(4, 2, 'Edit Profile', 'user/edit', 'fas fa-fw fa-user-edit', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tb_user`
+-- Indexes for table `user`
 --
-ALTER TABLE `tb_user`
-  ADD PRIMARY KEY (`id_user`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_user-role`
+-- Indexes for table `user_access_menu`
 --
-ALTER TABLE `tb_user-role`
-  ADD PRIMARY KEY (`id_role`);
+ALTER TABLE `user_access_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_menu`
+--
+ALTER TABLE `user_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `tb_user`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT for table `tb_user-role`
+-- AUTO_INCREMENT for table `user_access_menu`
 --
-ALTER TABLE `tb_user-role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `user_access_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `user_menu`
+--
+ALTER TABLE `user_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `user_role`
+--
+ALTER TABLE `user_role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `user_sub_menu`
+--
+ALTER TABLE `user_sub_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
