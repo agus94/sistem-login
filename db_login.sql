@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 06, 2019 at 03:17 PM
+-- Generation Time: Aug 12, 2019 at 01:28 PM
 -- Server version: 10.1.40-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
@@ -64,7 +64,8 @@ CREATE TABLE `user_access_menu` (
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 2, 2);
+(3, 2, 2),
+(4, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,10 @@ CREATE TABLE `user_menu` (
 
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (1, 'Admin'),
-(2, 'User');
+(2, 'User'),
+(3, 'Menu'),
+(5, 'Test'),
+(6, 'Test');
 
 -- --------------------------------------------------------
 
@@ -126,7 +130,10 @@ CREATE TABLE `user_sub_menu` (
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
 (1, 1, 'Dashboard', 'admin', 'fas fa-fw fa-tachometer-alt', 1),
 (3, 2, 'My Profile', 'user', 'fas fa-fw fa-user', 1),
-(4, 2, 'Edit Profile', 'user/edit', 'fas fa-fw fa-user-edit', 1);
+(4, 2, 'Edit Profile', 'user/edit', 'fas fa-fw fa-user-edit', 1),
+(5, 3, 'Menu Manegement', 'Menu', 'fas fa-fw fa-folder', 1),
+(6, 3, 'Submenu Management', 'menu/submenu', 'fa fa-fw fa-folder-open', 1),
+(7, 2, 'coba', 'coba/coba', 'fab fa-fw fa-youtube', 1);
 
 --
 -- Indexes for dumped tables
@@ -175,12 +182,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user_role`
 --
@@ -190,7 +197,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
